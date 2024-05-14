@@ -45,10 +45,6 @@ import {
                     const usdtContractReadSettings = new Contract(usdtContractAddress, usdtContractABI, ethersProvider)
                     const daiContractReadSettings = new Contract(daiContractAddress, daiContractABI, ethersProvider)
                     const daoContractReadSettings = new Contract(daoContractAddress, daoContractABI, ethersProvider)
-                    const lendBorrowContractReadSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, ethersProvider)
-                    const treasuryContractReadSettings = new Contract(treasuryContractAddress, treasuryContractABI, ethersProvider)
-                    const swapContractReadSettings = new Contract(swapContractAddress, swapContractABI, ethersProvider)
-                    const nftContractReadSettings = new Contract(nftContractAddress, nftContractABI, ethersProvider)
                   try {
                     const getULTbalance = await tokenContractReadSettings.balanceOf(address)
                     console.log(getULTbalance)
@@ -88,7 +84,7 @@ import {
                 }
                 }
                 getUserData();  
-               }, [isConnected])
+               }, [isConnected, address])
     
     return (
         <div>
@@ -125,11 +121,35 @@ import {
                 <div className="font-[500] text-[#fff] bg-[#502] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>$ULT</div>
                <div className="text-[#ccc] font-[500] underline">What is ULT?</div>
                <div className="text-[#aaa] text-[90%]">
-                ULT is the native token of the Ultimum Protocol. ULT is given as rewards for staking and lending. ULT is also used to reward members of the Ultimum DAO for 
+                ULT is the native token of the Ultimum Protocol. ULT is given as rewards for lending and staking. ULT is also used to reward members of the Ultimum DAO for 
                 participating in governance. ULT shall also be used to reward community members in potential airdrops organised by the protocol in the future.
                 ULT is backed by the Ultimum treasury. 
                </div>
                <button onClick={(e) => setDisplayComponent("daogovernance") & changeBg3(e)} className="text-center px-[0.4cm] py-[0.2cm] bg-[#502] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Buy ULT</button>
+            </div>
+            <div className="grid-cols-1 bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
+                <div className="font-[500] text-[#fff] bg-[#502] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>P2P Lending/Borrowing</div>
+                <div className="text-[#ccc] font-[500] underline">What is P2P lending/borrowing?</div>
+                <div className="text-[#aaa] text-[90%]">
+                Ultimum users are able to participate in unique P2P lending/borrowing activities of supported tokens. 
+                Firstly, a loan has to be created by the borrower, then another user (the lender) funds the loan by lending to the borrower. The loan has the 
+                following characteristics: loan amount, interest, expiry date, and collateral. Collateral provided by the borrower is locked up by the system until the given loan duration expires.
+                 The collateral is sent out to the lender if the borrower fails to repay the loan during the specified time. For a seamless user experience, 
+                 a "view all available loans" section with search functionality and pagination and decentralised chat system has been integrated into 
+                  the dApp. Participate in Ultimum DAO governance to determine the next supported token/collateral. 
+                </div>
+                <button onClick={(e) => setDisplayComponent("lend") & changeBg6(e)} className="text-center px-[0.4cm] py-[0.2cm] lg:float-left bg-[#502] lg:w-[49%] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Lend Now</button>
+                <button onClick={(e) => setDisplayComponent("borrow") & changeBg7(e)} className="text-center px-[0.4cm] py-[0.2cm] lg:float-right bg-[#502] lg:w-[49%] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Borrow Now</button>
+            </div>
+            <div className="grid-cols-1 bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
+                <div className="font-[500] text-[#fff] bg-[#502] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>Swap</div>
+                <div className="text-[#ccc] font-[500] underline">What is swapping?</div>
+                <div className="text-[#aaa] text-[90%]">
+                With a ChainLink Oracle integration and user-first approach, our users experience decentralized finance and can therefore use the Ultimum Protocol swap 
+                dApp to swap a variety of supported tokens with low gas fees (10x lower than Ethereum). Our swap dApp is designed to provide the best user experience and interface to our users. 
+                Ensure you have set network to the Lisk Sepolia network on the wallet connect option above and enjoy a seamless swap experience.
+                </div>
+                <button onClick={(e) => setDisplayComponent("swaptokens") & changeBg4(e)} className="text-center px-[0.4cm] py-[0.2cm] bg-[#502] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Swap Now</button>
             </div>
             <div className="grid-cols-1 bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
                 <div className="font-[500] text-[#fff] bg-[#502] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>Stake (Time-frame)</div>
@@ -140,29 +160,6 @@ import {
                     Users can stake and unstake at any time. The longer you stake, the bigger your rewards. It's best to unstake after the chosen duration to be fully rewarded. Unstaking before the chosen duration incurs a penalty.
                 </div>
                 <button onClick={(e) => setDisplayComponent("stake") & changeBg5(e)} className="text-center px-[0.4cm] py-[0.2cm] bg-[#502] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Stake Tokens</button>
-            </div>
-            <div className="grid-cols-1 bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
-                <div className="font-[500] text-[#fff] bg-[#502] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>Swap</div>
-                <div className="text-[#ccc] font-[500] underline">What is swapping?</div>
-                <div className="text-[#aaa] text-[90%]">
-                With a ChainLink Oracle integration and user-first approach, our users experience decentralized finance and can therefore use the Ultimum Protocol swap 
-                dApp to swap a variety of supported tokens with low gas fees (10x lower than Ethereum). Our swap dApp is designed to provide the best user experience and interface to our users. 
-                Ensure you have set network to the Lisk Sepolia network on your wallet and enjoy a seamless swap experience.
-                </div>
-                <button onClick={(e) => setDisplayComponent("swaptokens") & changeBg4(e)} className="text-center px-[0.4cm] py-[0.2cm] bg-[#502] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Swap Now</button>
-            </div>
-            <div className="grid-cols-1 bg-[#000] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
-                <div className="font-[500] text-[#fff] bg-[#502] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>P2P Lending/Borrowing</div>
-                <div className="text-[#ccc] font-[500] underline">What is P2P lending/borrowing?</div>
-                <div className="text-[#aaa] text-[90%]">
-                Ultimum users are able to participate in P2P lending/borrowing activities of supported tokens. Firstly, a loan has to be created by the borrower, then another user
-                 funds the loan by lending to the borrower. The loan has the following characteristics: loan amount, interest, expiry date, and collateral. Collateral provided
-                  by the borrower is locked up by the system until the given duration expires. The collateral is sent out to the lender if the borrower fails to repay the loan 
-                  during the specified time. For a better user experience, a "view all available loans" section with search functionality and pagination has been integrated into 
-                  the dApp. Participate in Ultimum DAO governance to determine the next supported collateral. 
-                </div>
-                <button onClick={(e) => setDisplayComponent("lend") & changeBg6(e)} className="text-center px-[0.4cm] py-[0.2cm] lg:float-left bg-[#502] lg:w-[49%] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Lend Now</button>
-                <button onClick={(e) => setDisplayComponent("borrow") & changeBg7(e)} className="text-center px-[0.4cm] py-[0.2cm] lg:float-right bg-[#502] lg:w-[49%] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Borrow Now</button>
             </div>
         </div>
         </div>

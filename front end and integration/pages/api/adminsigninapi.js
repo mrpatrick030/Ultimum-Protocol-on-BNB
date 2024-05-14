@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     const { email, password, secretkey } = req.body;
 
     // Make the query and present values
-    const query = 'SELECT * FROM ultimumadmin WHERE email=$1 AND password=$2 AND secretkey=$3';
+    const query = 'SELECT * FROM ultimumliskadmin WHERE email=$1 AND password=$2 AND secretkey=$3';
     const values = [email, password, secretkey];
 
     // process query

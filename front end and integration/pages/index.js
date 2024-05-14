@@ -65,8 +65,9 @@ export default function Home(){
      To get the full benefits of Ultimum, join the DAO as an active participant. Please make sure you receive the Ultimum NFT, which serves as a symbol of DAO membership, in order to join the DAO. 
     </div>
     <div data-aos="fade-in" className='info2' style={{transition:"0.5s ease-in-out"}}>
-    P2P Lending/Borrowing: Using supported tokens, our users can engage in peer-to-peer lending and borrowing activities. Lending to Ultimum yields substantial interest rewards. 
-    Our well-audited security algorithm protects your money. Make careful you provide collateral and make interest-only payments on any loans you take out from Ultimum. 
+    P2P Lending/Borrowing: Using supported tokens, our users can engage in peer-to-peer lending and borrowing activities on our unique P2P lending/borrowing dApp. 
+    Lending to Ultimum yields substantial interest rewards. Our lending/borrowing dApp is designed to be user-friendly with a decentralised chat system and search functionalities and paginations.
+    Our well-audited security algorithm protects your money. Make sure you provide collateral and make interest-only payments on any loans you take out from Ultimum. 
     Take part in Ultimum DAO governance to choose the token that will be supported next.
     </div>
     <div data-aos="fade-in" className='info3' style={{transition:"0.5s ease-in-out"}}>

@@ -4,7 +4,7 @@ export default async function handler(req, res) {
 
   try {
     const {id} = req.body;
-    const query = 'DELETE FROM ultimumblog WHERE id=$1';
+    const query = 'DELETE FROM ultimumliskblog WHERE id=$1';
     const values = [id];
 
     await sql.query(query, values);

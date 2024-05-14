@@ -2,7 +2,7 @@ import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
   try {
-    const query = 'SELECT * FROM ultimumblog ORDER BY id DESC';
+    const query = 'SELECT * FROM ultimumliskblog ORDER BY id DESC';
    
     //Process the query
     const data = await sql.query(query);

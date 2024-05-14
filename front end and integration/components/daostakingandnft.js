@@ -4,7 +4,7 @@ export default function DaoStakingAndNFT ({stakedTokenCapital, ETHamount, setETH
        <div>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
         <div className="grid-cols-1 bg-[#111] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
-         <div className='mb-[1cm] text-center lg:font-[500]'>To become a member of the Ultimum DAO, first buy 2,000 ULT and stake 1,000 ULT to be able to mint the Ultimum NFT which gives you access to the DAO.</div>
+         <div className='mb-[1cm] text-center lg:font-[500]'>To become a member of the Ultimum DAO, first buy 2,000 ULT and stake 1,000 ULT to be able to mint the Ultimum NFT which then gives you access to the DAO.</div>
          <form>
          <div className='p-[0.5cm] pb-[1cm] bg-[#eee] rounded-md'>
          <div className='text-[#222] font-[500] clear-both'><span className="float-left">ULT bal</span><span className='float-right'>ETH amount</span></div>
@@ -19,7 +19,7 @@ export default function DaoStakingAndNFT ({stakedTokenCapital, ETHamount, setETH
          </form>
         </div>
         <div className="grid-cols-1 bg-[#005] p-[0.5cm] rounded-xl" style={{boxShadow:"2px 2px 2px 2px #333"}}>
-         <div className='mb-[1cm] text-center lg:font-[500]'>Approve and stake 1,000 ULT to mint Ultimum NFT. Only Ultimum NFT and at least 1,000 ULT holders can join DAO.</div>
+         <div className='mb-[1cm] text-center lg:font-[500]'>Approve and stake 1,000 ULT to mint Ultimum NFT. Only users with Ultimum NFT and at least 1,000 ULT can join DAO.</div>
          <form>
          <div className='p-[0.5cm] pb-[1cm] bg-[#eee] rounded-md'>
          <div className='text-[#222] font-[500] clear-both'><span className="float-left">Required ULT</span><span className='float-right'>NFTs</span></div>

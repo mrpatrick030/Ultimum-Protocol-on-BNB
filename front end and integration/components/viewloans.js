@@ -33,18 +33,9 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
       useEffect(()=>{
         const readLoansData = async () => {
           if(isConnected){
-            setLoading(true)
             //read settings first
             const ethersProvider = new BrowserProvider(walletProvider) 
-            const tokenContractReadSettings = new Contract(tokenContractAddress, tokenContractABI, ethersProvider)
-            const stakeContractReadSettings = new Contract(stakeContractAddress, stakeContractABI, ethersProvider)
-            const usdtContractReadSettings = new Contract(usdtContractAddress, usdtContractABI, ethersProvider)
-            const daiContractReadSettings = new Contract(daiContractAddress, daiContractABI, ethersProvider)
-            const daoContractReadSettings = new Contract(daoContractAddress, daoContractABI, ethersProvider)
             const lendBorrowContractReadSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, ethersProvider)
-            const treasuryContractReadSettings = new Contract(treasuryContractAddress, treasuryContractABI, ethersProvider)
-            const swapContractReadSettings = new Contract(swapContractAddress, swapContractABI, ethersProvider)
-            const nftContractReadSettings = new Contract(nftContractAddress, nftContractABI, ethersProvider)
             try {
                 const dataArray = []
                 const getAllLoannsNumber = await lendBorrowContractReadSettings.loanCount();
@@ -57,15 +48,11 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
                 setLoanData(dataArray)
             } catch (error) {
                 console.log(error)
-                setLoading(false)
-            }
-            finally {
-                setLoading(false)
             }
           }
         }
         readLoansData();
-    }, [])
+    }, [loanData, address, isConnected])
 
 
     // lend to borrower from view loans section
@@ -86,21 +73,19 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
         setLoading(true)
         //read settings first
         const ethersProvider = new BrowserProvider(walletProvider) 
-        const tokenContractReadSettings = new Contract(tokenContractAddress, tokenContractABI, ethersProvider)
-        const stakeContractReadSettings = new Contract(stakeContractAddress, stakeContractABI, ethersProvider)
-        const usdtContractReadSettings = new Contract(usdtContractAddress, usdtContractABI, ethersProvider)
-        const daiContractReadSettings = new Contract(daiContractAddress, daiContractABI, ethersProvider)
-        const daoContractReadSettings = new Contract(daoContractAddress, daoContractABI, ethersProvider)
         const lendBorrowContractReadSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, ethersProvider)
-        const treasuryContractReadSettings = new Contract(treasuryContractAddress, treasuryContractABI, ethersProvider)
-        const swapContractReadSettings = new Contract(swapContractAddress, swapContractABI, ethersProvider)
-        const nftContractReadSettings = new Contract(nftContractAddress, nftContractABI, ethersProvider)
        try {
         const searchDataArray = []
-        const getAllLoannsNumber = await lendBorrowContractReadSettings.loanCount();
-        for (let i=0; i < getAllLoannsNumber; i++){
+        const getAllLoansNumber = await lendBorrowContractReadSettings.loanCount();
+        for (let i=0; i < getAllLoansNumber; i++){
           const anyLoanData = await lendBorrowContractReadSettings.getLoanInfo(i);
-          if (anyLoanData.lender.toString().toLowerCase() == searchQuery.toLowerCase() || anyLoanData.borrower.toString().toLowerCase() == searchQuery.toLowerCase() || anyLoanData.loan_id.toString() == searchQuery){
+          if (((anyLoanData.lender.toString().toLowerCase()).substring(0, 5) + "..." + (anyLoanData.lender.toString().toLowerCase()).substring(37, 42))  == searchQuery.toLowerCase() || 
+           ((anyLoanData.lender.toString().toLowerCase()).substring(0, 5)) == searchQuery.toLowerCase() ||
+           ((anyLoanData.lender.toString().toLowerCase()).substring(37, 42)) == searchQuery.toLowerCase() ||
+           ((anyLoanData.borrower.toString().toLowerCase()).substring(0, 5) + "..." + (anyLoanData.borrower.toString().toLowerCase()).substring(37, 42))  == searchQuery.toLowerCase() || 
+           ((anyLoanData.borrower.toString().toLowerCase()).substring(0, 5)) == searchQuery.toLowerCase() ||
+           ((anyLoanData.borrower.toString().toLowerCase()).substring(37, 42)) == searchQuery.toLowerCase() ||
+            anyLoanData.loan_id.toString() == searchQuery){
             searchDataArray.push(anyLoanData)  
           }
           searchDataArray.sort((a, b) => b.loan_id.toString() - a.loan_id.toString())
@@ -238,13 +223,13 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
         <div key={data.loan_id.toString()} className="p-[0.5cm] bg-[#000] rounded-xl mb-[0.5cm] overflow-auto">
         <div>
         <div className="m-[0.2cm]"><span className="bg-[#222] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] font-[500]" style={{border:"2px solid #333"}}>ID: {data.loan_id.toString()}</span><span className="float-right cursor-pointer" onClick={(e) => showChatBoxAndBlurEffect(data.lender.toString(), data.borrower.toString(), data.loan_id.toString())}>Chat <img src="images/chat.png" width="25" style={{display:"inline-block"}} /></span></div>  
-        <div className="m-[0.2cm] py-[0.1cm] mt-[0.4cm] overflow-auto"><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Lender</span>{data.lender.toString() == "0x0000000000000000000000000000000000000000" ? (<span className="text-[#ff0]"> No lender yet</span>) : (<span> {data.lender.toString()}</span>)}</div>  
+        <div className="m-[0.2cm] py-[0.1cm] mt-[0.4cm] overflow-auto"><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Lender</span>{data.lender.toString() == "0x0000000000000000000000000000000000000000" ? (<span className="text-[#ff0]"> No lender yet</span>) : (<span> {data.lender.toString().substring(0, 5)}...{data.lender.toString().substring(37, 42)}</span>)}</div>  
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Token to borrow</span> ETH</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Amount to borrow</span> {parseFloat(data.amount.toString() * 10**-18).toFixed(10)} ETH</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Interest</span> {data.interest.toString()}%</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Repayment amount</span> {parseFloat(data.repaymentAmount.toString() * 10**-18).toFixed(10)} ETH</div>
-        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Loan expires</span> {new Date(data.fundingDeadline.toString() * 1000).toLocaleString()}</div>
-        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Borrower</span> {data.borrower.toString()}</div>
+        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Loan expires</span> {(data.fundingDeadline.toString() >= (new Date().getTime().toString()/1000)) ? (<span>{new Date(data.fundingDeadline.toString() * 1000).toLocaleString()}</span>) : (<span className="text-[#900]">{new Date(data.fundingDeadline.toString() * 1000).toLocaleString()}</span>)}</div>
+        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Borrower</span> {data.borrower.toString().substring(0, 5)}...{data.borrower.toString().substring(37, 42)}</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Collateral</span> 
         {(data.collateral.toString()) == tokenContractAddress && (<span> ULT</span>)} 
         {(data.collateral.toString()) == usdtContractAddress && (<span> USDT</span>)}
@@ -263,7 +248,7 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
          {(data.repaid) == true && (<span className="text-[#0f0]"> Loan has been repaid</span>)} 
          {(data.repaid) == false && (<span className="text-[#ff0]"> Loan has not been repaid</span>)} 
         </div>
-        {(((data.active) == true) & ((data.repaid) == false) & (address != (data.borrower.toString()))) ? (<div className="mt-[0.5cm] text-right"><button className="text-[#fff] fa-fade bg-[#040] rounded-md px-[0.3cm] py-[0.05cm] generalbutton4" style={{boxShadow:"1px 1px 1px 2px #ccc", animationDuration:"3s"}} onClick={(e) => fundLoanFromLoanList(data.loan_id.toString(), parseFloat(data.amount.toString() * 10**-18).toFixed(18))}>Fund loan <img src="images/loan.png" className="ml-[0.2cm]" width="20" style={{display:"inline-block"}} /></button></div>) : (<span></span>)}
+        {(((data.active) == true) & ((data.repaid) == false) & (address != (data.borrower.toString())) & (data.fundingDeadline.toString() >= (new Date().getTime().toString()/1000))) ? (<div className="mt-[0.5cm] text-right"><button className="text-[#fff] fa-fade bg-[#040] rounded-md px-[0.3cm] py-[0.05cm] generalbutton4" style={{boxShadow:"1px 1px 1px 2px #ccc", animationDuration:"3s"}} onClick={(e) => fundLoanFromLoanList(data.loan_id.toString(), parseFloat(data.amount.toString() * 10**-18).toFixed(18))}>Fund loan <img src="images/loan.png" className="ml-[0.2cm]" width="20" style={{display:"inline-block"}} /></button></div>) : (<span></span>)}
           </div>        
        </div>
         ))}
@@ -286,13 +271,13 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
         <div key={data.loan_id.toString()} className="p-[0.5cm] bg-[#000] rounded-xl mb-[0.5cm] overflow-auto">
         <div>
         <div className="m-[0.2cm]"><span className="bg-[#222] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] font-[500]" style={{border:"2px solid #333"}}>ID: {data.loan_id.toString()}</span><span className="float-right cursor-pointer" onClick={(e) => showChatBoxAndBlurEffect(data.lender.toString(), data.borrower.toString(), data.loan_id.toString())}>Chat <img src="images/chat.png" width="25" style={{display:"inline-block"}} /></span></div>  
-        <div className="m-[0.2cm] py-[0.1cm] mt-[0.4cm] overflow-auto"><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Lender</span>{data.lender.toString() == "0x0000000000000000000000000000000000000000" ? (<span className="text-[#ff0]"> No lender yet</span>) : (<span> {data.lender.toString()}</span>)}</div>  
+        <div className="m-[0.2cm] py-[0.1cm] mt-[0.4cm] overflow-auto"><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Lender</span>{data.lender.toString() == "0x0000000000000000000000000000000000000000" ? (<span className="text-[#ff0]"> No lender yet</span>) : (<span> {data.lender.toString().substring(0, 5)}...{data.lender.toString().substring(37, 42)}</span>)}</div>  
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Token to borrow</span> ETH</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Amount to borrow</span> {parseFloat(data.amount.toString() * 10**-18).toFixed(10)} ETH</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Interest</span> {data.interest.toString()}%</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Repayment amount</span> {parseFloat(data.repaymentAmount.toString() * 10**-18).toFixed(10)} ETH</div>
-        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Loan expires</span> {new Date(data.fundingDeadline.toString() * 1000).toLocaleString()}</div>
-        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Borrower</span> {data.borrower.toString()}</div>
+        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Loan expires</span> {(data.fundingDeadline.toString() >= (new Date().getTime().toString()/1000)) ? (<span>{new Date(data.fundingDeadline.toString() * 1000).toLocaleString()}</span>) : (<span className="text-[#900]">{new Date(data.fundingDeadline.toString() * 1000).toLocaleString()}</span>)}</div>
+        <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Borrower</span> <span></span>{data.borrower.toString().substring(0, 5)}...{data.borrower.toString().substring(37, 42)}</div>
         <div className="m-[0.2cm]" style={{display:"inline-block"}}><span className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%]" style={{border:"2px solid #333"}}>Collateral</span> 
         {(data.collateral.toString()) == tokenContractAddress && (<span> ULT</span>)} 
         {(data.collateral.toString()) == usdtContractAddress && (<span> USDT</span>)}
@@ -311,7 +296,7 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
          {(data.repaid) == true && (<span className="text-[#0f0]"> Loan has been repaid</span>)} 
          {(data.repaid) == false && (<span className="text-[#ff0]"> Loan has not been repaid</span>)} 
         </div>
-        {(((data.active) == true) & ((data.repaid) == false) & (address != (data.borrower.toString()))) ? (<div className="mt-[0.5cm] text-right"><button className="text-[#fff] fa-fade bg-[#040] rounded-md px-[0.3cm] py-[0.05cm] generalbutton4" style={{boxShadow:"1px 1px 1px 2px #ccc", animationDuration:"3s"}} onClick={(e) => fundLoanFromLoanList(data.loan_id.toString(), parseFloat(data.amount.toString() * 10**-18).toFixed(18))}>Fund loan <img src="images/loan.png" className="ml-[0.2cm]" width="20" style={{display:"inline-block"}} /></button></div>) : (<span></span>)}
+        {(((data.active) == true) & ((data.repaid) == false) & (address != (data.borrower.toString())) & (data.fundingDeadline.toString() >= (new Date().getTime().toString()/1000))) ? (<div className="mt-[0.5cm] text-right"><button className="text-[#fff] fa-fade bg-[#040] rounded-md px-[0.3cm] py-[0.05cm] generalbutton4" style={{boxShadow:"1px 1px 1px 2px #ccc", animationDuration:"3s"}} onClick={(e) => fundLoanFromLoanList(data.loan_id.toString(), parseFloat(data.amount.toString() * 10**-18).toFixed(18))}>Fund loan <img src="images/loan.png" className="ml-[0.2cm]" width="20" style={{display:"inline-block"}} /></button></div>) : (<span></span>)}
           </div>        
        </div>
         ))}
@@ -341,24 +326,24 @@ export default function LoanSection({loading, setLoading, setshowLoanSection, le
           {chats.map((chat) => (
            <div key={chat.id.toString()}>
            {chat.sender.toLowerCase() == address.toLowerCase() ? 
-           (<div className="mb-[0.5cm]">
-           <div className="grid lg:grid-cols-9 grid-cols-1 gap-4">
-             <div className="grid-cols-1"><img src="images/chatyou.png" width="50" className="lg:mx-[auto] rounded-[100%]" /></div>
-             <div className="grid-cols-1 lg:col-span-8 bg-[#200] text-[#fff] p-[0.5cm] rounded-b-2xl rounded-tr-2xl">
-               {chat.message}
+           (<div className="lg:mb-[1cm] mb-[0.5cm]">
+           <div className="grid lg:grid-cols-9 grid-cols-1 lg:gap-4 gap-2">
+             <div className="grid-cols-1"><img src="images/chatyou.png" width="50" className="rounded-[100%]" /></div>
+             <div className="grid-cols-1 lg:col-span-8">
+               <div style={{display:"inline-block"}} className="bg-[#200] text-[#fff] p-[0.5cm] rounded-b-2xl rounded-tr-2xl overflow-auto">{chat.message}</div>
+               <div><span className="text-[80%] text-[#444]">{new Date(chat.datetime.toString() * 1000).toLocaleString()}</span></div>
              </div>
-           </div>
-           <div className="text-right"><span className="text-[80%] text-[#444]">{new Date(chat.datetime.toString() * 1000).toLocaleString()}</span></div>
+           </div> 
            </div>) : 
-           (<div className="ml-[10%] mb-[0.5cm]">
-           <div className="grid lg:grid-cols-9 grid-cols-1 gap-4">
-             <div className="grid-cols-1"><img src="images/chatuser.png" width="50" className="lg:mx-[auto] rounded-[100%]" /></div>
-             <div className="grid-cols-1 lg:col-span-8 bg-[#001] text-[#fff] p-[0.5cm] rounded-b-2xl rounded-tl-2xl">
-               {chat.message}
+           (<div className="lg:mb-[1cm] mb-[0.5cm]">
+           <div className="grid lg:grid-cols-9 grid-cols-1 lg:gap-4 gap-2 text-right">
+           <div className="grid-cols-1 lg:col-span-8">
+           <div className="text-right"><span className="text-[80%] text-[#444]">{new Date(chat.datetime.toString() * 1000).toLocaleString()}</span></div>
+           <div style={{display:"inline-block"}} className="bg-[#001] text-[#fff] p-[0.5cm] text-left rounded-b-2xl rounded-tr-2xl mt-[0.2cm]">{chat.message}</div>
              </div>
-          </div>
-          <div className="text-right"><span className="text-[80%] text-[#444]">{new Date(chat.datetime.toString() * 1000).toLocaleString()}</span></div>
-          </div>)
+             <div className="grid-cols-1 text-right"><img src="images/chatuser.png" width="50" className="rounded-[100%] float-right lg:mt-[0.9cm]" /></div>
+           </div>
+           </div>)
           }
           </div>
           ))}

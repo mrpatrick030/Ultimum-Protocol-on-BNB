@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const { username, email, password, gender } = req.body;
 
     // Check if the email already exists
-    const emailCheckQuery = 'SELECT * FROM ultimumadmin WHERE email = $1';
+    const emailCheckQuery = 'SELECT * FROM ultimumliskadmin WHERE email = $1';
     const emailCheckResult = await sql.query(emailCheckQuery, [email]);
 
     if (emailCheckResult.rows.length > 0) {
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     }
 
     // If the email is not in the database, proceed to signup admin
-    const insertQuery = 'INSERT INTO ultimumadmin (username, email, password, gender) VALUES ($1, $2, $3, $4)';
+    const insertQuery = 'INSERT INTO ultimumliskadmin (username, email, password, gender) VALUES ($1, $2, $3, $4)';
     const values = [username, email, password, gender];
 
     const result = await sql.query(insertQuery, values);

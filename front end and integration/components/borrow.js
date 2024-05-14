@@ -42,14 +42,8 @@ export default function BorrowSection() {
       //read settings first
       const ethersProvider = new BrowserProvider(walletProvider) 
       const tokenContractReadSettings = new Contract(tokenContractAddress, tokenContractABI, ethersProvider)
-      const stakeContractReadSettings = new Contract(stakeContractAddress, stakeContractABI, ethersProvider)
       const usdtContractReadSettings = new Contract(usdtContractAddress, usdtContractABI, ethersProvider)
       const daiContractReadSettings = new Contract(daiContractAddress, daiContractABI, ethersProvider)
-      const daoContractReadSettings = new Contract(daoContractAddress, daoContractABI, ethersProvider)
-      const lendBorrowContractReadSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, ethersProvider)
-      const treasuryContractReadSettings = new Contract(treasuryContractAddress, treasuryContractABI, ethersProvider)
-      const swapContractReadSettings = new Contract(swapContractAddress, swapContractABI, ethersProvider)
-      const nftContractReadSettings = new Contract(nftContractAddress, nftContractABI, ethersProvider)
     try {
       const ETHbalance = await ethersProvider.getBalance(address)
       const parseETHbalance = formatUnits(ETHbalance, 18);
@@ -83,7 +77,6 @@ export default function BorrowSection() {
         setLoading(true)
         const ethersProvider = new BrowserProvider(walletProvider) 
         const signer = await ethersProvider.getSigner()
-       const lendBorrowContractWriteSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, signer)
        const tokenContractWriteSettings = new Contract(tokenContractAddress, tokenContractABI, signer)
        const usdtContractWriteSettings = new Contract(usdtContractAddress, usdtContractABI, signer)
        const daiContractWriteSettings = new Contract(daiContractAddress, daiContractABI, signer)
@@ -122,8 +115,6 @@ export default function BorrowSection() {
         const ethersProvider = new BrowserProvider(walletProvider) 
         const signer = await ethersProvider.getSigner()
         const lendBorrowContractWriteSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, signer)
-        const usdtContractWriteSettings = new Contract(usdtContractAddress, usdtContractABI, signer)
-        const daiContractWriteSettings = new Contract(daiContractAddress, daiContractABI, signer)
        try {
           const blockNumber = await ethersProvider.getBlockNumber();
           const block = await ethersProvider.getBlock(blockNumber);

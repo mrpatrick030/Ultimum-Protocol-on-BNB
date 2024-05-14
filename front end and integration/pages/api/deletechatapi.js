@@ -4,7 +4,7 @@ export default async function handler(req, res) {
 
   try {
     const {loanid} = req.body;
-    const query = 'DELETE FROM taraxachat WHERE loanid=$1';
+    const query = 'DELETE FROM ultimumliskchat WHERE loanid=$1';
     const values = [loanid];
 
     await sql.query(query, values);

@@ -4,7 +4,7 @@ export default async function handler(req, res) {
 
   try {
     const { id, image_link, video_link, title, date, description, category } = req.body;
-    const query = 'INSERT INTO ultimumblog (image_link, video_link, title, date, description, category) VALUES ($1, $2, $3, $4, $5, $6)';
+    const query = 'INSERT INTO ultimumliskblog (image_link, video_link, title, date, description, category) VALUES ($1, $2, $3, $4, $5, $6)';
     const values = [image_link, video_link, title, date, description, category];
 
     await sql.query(query, values);

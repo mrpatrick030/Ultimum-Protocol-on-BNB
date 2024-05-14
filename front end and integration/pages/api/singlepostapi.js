@@ -3,7 +3,7 @@ import { sql } from '@vercel/postgres';
 export default async function handler(req, res) {
   try {
     const {id} = req.body
-    const query = 'SELECT * FROM ultimumblog WHERE id=$1';
+    const query = 'SELECT * FROM ultimumliskblog WHERE id=$1';
     const values = [id];
 
     // Use sql.query() to execute the SQL query and fetch the data

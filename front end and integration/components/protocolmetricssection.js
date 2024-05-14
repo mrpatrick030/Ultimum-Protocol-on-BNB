@@ -51,9 +51,6 @@ export default function ProtocolMetricsSection() {
                 const daiContractReadSettings = new Contract(daiContractAddress, daiContractABI, ethersProvider)
                 const daoContractReadSettings = new Contract(daoContractAddress, daoContractABI, ethersProvider)
                 const lendBorrowContractReadSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, ethersProvider)
-                const treasuryContractReadSettings = new Contract(treasuryContractAddress, treasuryContractABI, ethersProvider)
-                const swapContractReadSettings = new Contract(swapContractAddress, swapContractABI, ethersProvider)
-                const nftContractReadSettings = new Contract(nftContractAddress, nftContractABI, ethersProvider)
               try {
                 const getTotalTokenSupply = await tokenContractReadSettings.totalSupply()
                 console.log(getTotalTokenSupply.toString() * 10**-18)
@@ -106,7 +103,7 @@ export default function ProtocolMetricsSection() {
             }
             }
             getProtocolData();  
-           }, [isConnected])
+           }, [isConnected, address])
 
     return (
         <div>
@@ -176,6 +173,12 @@ export default function ProtocolMetricsSection() {
             </div>
             <div className="grid-cols-1">
             <div className="m-[0.4cm]">
+             <div className="font-[500] text-[#fff] bg-[#00f] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>P2P Lend/Borrow Contract Address</div>
+             <div className="text-[#aaa]" style={{overflow:"auto"}}>{lendBorrowContractAddress}</div>
+            </div>
+            </div>
+            <div className="grid-cols-1">
+            <div className="m-[0.4cm]">
              <div className="font-[500] text-[#fff] bg-[#00f] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>Swap Contract Address</div>
              <div className="text-[#aaa]" style={{overflow:"auto"}}>{swapContractAddress}</div>
             </div>
@@ -184,12 +187,6 @@ export default function ProtocolMetricsSection() {
             <div className="m-[0.4cm]">
              <div className="font-[500] text-[#fff] bg-[#00f] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>Stake (Time-frame) Contract Address</div>
              <div className="text-[#aaa]" style={{overflow:"auto"}}>{stakeContractAddress}</div>
-            </div>
-            </div>
-            <div className="grid-cols-1">
-            <div className="m-[0.4cm]">
-             <div className="font-[500] text-[#fff] bg-[#00f] px-[0.4cm] py-[0.1cm] rounded-md mb-[0.2cm]" style={{display:"inline-block"}}>Lend/Borrow Contract Address</div>
-             <div className="text-[#aaa]" style={{overflow:"auto"}}>{lendBorrowContractAddress}</div>
             </div>
             </div>
             <div className="grid-cols-1">

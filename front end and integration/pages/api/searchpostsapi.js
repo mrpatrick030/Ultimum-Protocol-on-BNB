@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const { query } = req.query;
     const searchTerm = `%${query}%`;
 
-    const searchQuery = 'SELECT * FROM ultimumblog WHERE title ILIKE $1 OR description ILIKE $2 OR category ILIKE $3 ORDER BY id DESC';
+    const searchQuery = 'SELECT * FROM ultimumliskblog WHERE title ILIKE $1 OR description ILIKE $2 OR category ILIKE $3 ORDER BY id DESC';
     const values = [searchTerm, searchTerm, searchTerm];
 
     // Use sql.query() and directly destructure the data property

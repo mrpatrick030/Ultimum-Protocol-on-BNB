@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     } = req.body;
 
     // Construct the SQL query with placeholders for each non-empty field
-    let query = 'UPDATE ultimumblog SET';
+    let query = 'UPDATE ultimumliskblog SET';
     const values = [];
 
     if (image_link) {

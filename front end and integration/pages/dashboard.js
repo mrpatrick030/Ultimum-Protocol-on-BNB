@@ -117,7 +117,7 @@ export default function Dashboard(){
   return (
     <>
     <Head>
-   <title>Ultimum Protocol Dashboard - Acess to Ultimum's Ecosystem (DAO, Swap, Staking, Token, Treasury, Lending/Borrowing, NFT)</title>
+   <title>Ultimum Protocol Dashboard - Gateway to Ultimum's Ecosystem (DAO, Lending/Borrowing, Swap, Staking, Token, Treasury, NFT)</title>
    <link rel="shortcut icon" href="/favicon.ico" />
    </Head>
    <div>
@@ -125,7 +125,7 @@ export default function Dashboard(){
     <div className='dashboardmenulg h-[100%] bg-[#111] text-[#fff]' style={{zIndex:"999", position:"fixed", boxShadow:"2px 2px 2px 2px #502", overflow:"auto"}}> 
      <div className='px-[0.5cm] py-[0.6cm] text-center' style={{display:"block"}}>
        <Link href="/"><img src="images/logo.png" width="170" style={{display:"inline-block"}}/></Link>
-       <Link href="https://Lisk.io"><img src="images/Lisk.png" width="25" className='ml-[0.3cm] rounded-[100%]' style={{display:"inline-block"}}/></Link>
+       <Link href="https://Lisk.com"><img src="images/Lisk.png" width="25" className='ml-[0.3cm] rounded-[100%]' style={{display:"inline-block"}}/></Link>
      </div>
       <div>
       <div className='p-[0.4cm] menuitems4' onClick={(e) => setDisplayComponent("mybalances") & changeBg1(e)} style={{background:bgColor1}}>My Balances <img src="images/balances.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div>
@@ -137,7 +137,7 @@ export default function Dashboard(){
       <div className='p-[0.4cm] menuitems4' onClick={(e) => setDisplayComponent("borrow") & changeBg7(e)} style={{background:bgColor7}}>Borrow <img src="images/borrowing.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div>
       </div>
       <div className='mt-[30%] p-[0.5cm]' style={{display:"block"}}>
-       <div><Link href="https://github.com/Goodness5/ultimum-dao-protocol"><button className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
+       <div><Link href="https://github.com/mrpatrick030/Ultimum-DeFi-Protocol-on-Lisk"><button className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
        <Link href="https://discord.com"><img src="images/discord.png" width="35" className='m-[0.2cm]' style={{display:"inline-block"}}/></Link>
        <Link href="https://x.com"><img src="images/twitter.png" width="35" className='m-[0.2cm]' style={{display:"inline-block"}}/></Link>
       </div>
@@ -147,7 +147,7 @@ export default function Dashboard(){
    <div className='w-[70%] h-[100%] bg-[#111] text-[#fff]' data-aos="fade-right" style={{boxShadow:"2px 2px 2px 2px #502", overflow:"auto"}}> 
      <div className='px-[0.5cm] py-[0.6cm] text-center' style={{display:"block"}}>
        <Link href="/"><img src="images/logo.png" width="170" onClick={(e) => setMountSmallMenu(false)} style={{display:"inline-block"}}/></Link>
-       <Link href="https://Lisk.io"><img src="images/Lisk.png" width="25" className='ml-[0.3cm] rounded-[100%]' onClick={(e) => setMountSmallMenu(false)} style={{display:"inline-block"}}/></Link>
+       <Link href="https://Lisk.com"><img src="images/Lisk.png" width="25" className='ml-[0.3cm] rounded-[100%]' onClick={(e) => setMountSmallMenu(false)} style={{display:"inline-block"}}/></Link>
      </div>
       <div>
       <div className='p-[0.4cm] menuitems4' onClick={(e) => setDisplayComponent("mybalances") & changeBg1(e) & setMountSmallMenu(false)} style={{background:bgColor1}}>My Balances <img src="images/balances.png" width="25" className='ml-[0.2cm]' style={{display:"inline-block"}}/></div>
@@ -160,7 +160,7 @@ export default function Dashboard(){
       </div>
       <div className='my-[1cm]'><img src="images/arrow.png" onClick={(e) => setMountSmallMenu(false)} className='closedashboardsmallmenu mx-[auto] cursor-pointer' width="50" /></div>
       <div className='mt-[20%] p-[0.5cm]' style={{display:"block"}}>
-       <div><Link href="https://github.com/Goodness5/ultimum-dao-protocol"><button onClick={(e) => setMountSmallMenu(false)} className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
+       <div><Link href="https://github.com/mrpatrick030/Ultimum-DeFi-Protocol-on-Lisk"><button onClick={(e) => setMountSmallMenu(false)} className='m-[0.2cm] rounded-md bg-[#502] px-[0.3cm] py-[0.15cm] text-[#fff]'>Docs <img src="images/documentation.png" width="17" className='ml-[0.2cm]' style={{display:"inline-block"}}/></button></Link></div>
        <Link href="https://discord.com"><img src="images/discord.png" width="35" className='m-[0.2cm]' onClick={(e) => setMountSmallMenu(false)} style={{display:"inline-block"}}/></Link>
        <Link href="https://x.com"><img src="images/twitter.png" width="35" className='m-[0.2cm]' onClick={(e) => setMountSmallMenu(false)} style={{display:"inline-block"}}/></Link>
       </div>

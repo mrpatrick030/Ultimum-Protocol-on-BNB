@@ -4,7 +4,7 @@ export default async function handler(req, res) {
 
   try {
     const { message, lender, borrower, sender, loanid, datetime } = req.body;
-    const query = 'INSERT INTO taraxachat (message, lender, borrower, sender, loanid, datetime) VALUES ($1, $2, $3, $4, $5, $6)';
+    const query = 'INSERT INTO ultimumliskchat (message, lender, borrower, sender, loanid, datetime) VALUES ($1, $2, $3, $4, $5, $6)';
     const values = [message, lender, borrower, sender, loanid, datetime];
 
     await sql.query(query, values);

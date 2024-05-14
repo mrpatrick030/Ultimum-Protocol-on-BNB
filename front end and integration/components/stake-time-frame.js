@@ -53,11 +53,6 @@ export default function StakeSection() {
                     const stakeContractReadSettings = new Contract(stakeContractAddress, stakeContractABI, ethersProvider)
                     const usdtContractReadSettings = new Contract(usdtContractAddress, usdtContractABI, ethersProvider)
                     const daiContractReadSettings = new Contract(daiContractAddress, daiContractABI, ethersProvider)
-                    const daoContractReadSettings = new Contract(daoContractAddress, daoContractABI, ethersProvider)
-                    const lendBorrowContractReadSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, ethersProvider)
-                    const treasuryContractReadSettings = new Contract(treasuryContractAddress, treasuryContractABI, ethersProvider)
-                    const swapContractReadSettings = new Contract(swapContractAddress, swapContractABI, ethersProvider)
-                    const nftContractReadSettings = new Contract(nftContractAddress, nftContractABI, ethersProvider)
                   try {
                     const ULTbalance = await tokenContractReadSettings.balanceOf(address)
                     const parseULTbalance = parseFloat(formatUnits(ULTbalance, 18)).toFixed(5);
@@ -227,10 +222,10 @@ export default function StakeSection() {
           <div className="mt-[0.5cm]"><img src="images/swapimage.png" onClick={(e) => setStakeOption(false)} className="m-[auto] cursor-pointer switchbutton" width="35" /></div>
           <div className=" bg-[#002] p-[0.5cm] rounded-xl mt-[0.5cm]" style={{boxShadow:"2px 2px 2px 2px #502"}}>
          <div className='p-[0.5cm] bg-[#000] text-[#fff] rounded-md'>
-          <div className="mb-[0.3cm]"><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm]" style={{boxShadow:"2px 2px 2px 2px #002"}}>Staked amount:</button> &nbsp;{tokenAcapital ? (<span>{Intl.NumberFormat().format(tokenAcapital)}</span>) : (<span>Nil</span>)}</div>
-          <div className="mb-[0.3cm]"><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm]" style={{boxShadow:"2px 2px 2px 2px #002"}}>Stake start date:</button> &nbsp;{startDateEpoch != 0 ? (<span>{tokenAstartDate}</span>) : (<span>Nil</span>)}</div>
-          <div className="mb-[0.3cm]"><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm]" style={{boxShadow:"2px 2px 2px 2px #002"}}>Stake duration:</button> &nbsp;{tokenAduration ? (<span>{Intl.NumberFormat().format(tokenAduration)} days</span>) : (<span>Nil</span>)}</div>
-          <div><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm]" style={{boxShadow:"2px 2px 2px 2px #002"}}>Stake reward:</button> &nbsp;{tokenArewards ? (<span>{Intl.NumberFormat().format(tokenArewards)} ULT</span>) : (<span>Nil</span>)}</div>
+          <div className="mb-[0.3cm]"><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm] cursor-default" style={{boxShadow:"2px 2px 2px 2px #002"}}>Staked amount:</button> &nbsp;{tokenAcapital ? (<span>{Intl.NumberFormat().format(tokenAcapital)}</span>) : (<span>Nil</span>)}</div>
+          <div className="mb-[0.3cm]"><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm] cursor-default" style={{boxShadow:"2px 2px 2px 2px #002"}}>Stake start date:</button> &nbsp;{startDateEpoch ? (<span>{tokenAstartDate}</span>) : (<span>Nil</span>)}</div>
+          <div className="mb-[0.3cm]"><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm] cursor-default" style={{boxShadow:"2px 2px 2px 2px #002"}}>Stake duration:</button> &nbsp;{tokenAduration ? (<span>{Intl.NumberFormat().format(tokenAduration)} days</span>) : (<span>Nil</span>)}</div>
+          <div><button className="px-[0.1cm] py-[0.1cm] bg-[#502] rounded-md w-[3.6cm] cursor-default" style={{boxShadow:"2px 2px 2px 2px #002"}}>Stake reward:</button> &nbsp;{tokenArewards ? (<span>{Intl.NumberFormat().format(tokenArewards)} ULT</span>) : (<span>Nil</span>)}</div>
          </div>
         </div>
         {showApproveStakeButton ? (<button type="submit" className='text-center py-[0.3cm] bg-[#002] font-[500] text-[#fff] w-[100%] mt-[0.5cm] rounded-md generalbutton4 cursor-pointer' onClick={(e) => {e.preventDefault();approveStakingContractFromTokenContracts(tokenA, tokenAamount)}}>Approve Stake</button>) : (<span></span>)}

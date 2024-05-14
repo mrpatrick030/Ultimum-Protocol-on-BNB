@@ -55,12 +55,6 @@ export default function UltimumDAOSection({displayComponent}) {
              const ethersProvider = new BrowserProvider(walletProvider) 
              const tokenContractReadSettings = new Contract(tokenContractAddress, tokenContractABI, ethersProvider)
              const stakeContractReadSettings = new Contract(stakeContractAddress, stakeContractABI, ethersProvider)
-             const usdtContractReadSettings = new Contract(usdtContractAddress, usdtContractABI, ethersProvider)
-             const daiContractReadSettings = new Contract(daiContractAddress, daiContractABI, ethersProvider)
-             const daoContractReadSettings = new Contract(daoContractAddress, daoContractABI, ethersProvider)
-             const lendBorrowContractReadSettings = new Contract(lendBorrowContractAddress, lendBorrowContractABI, ethersProvider)
-             const treasuryContractReadSettings = new Contract(treasuryContractAddress, treasuryContractABI, ethersProvider)
-             const swapContractReadSettings = new Contract(swapContractAddress, swapContractABI, ethersProvider)
              const nftContractReadSettings = new Contract(nftContractAddress, nftContractABI, ethersProvider)       
            try {
             const ETHbalance = await ethersProvider.getBalance(address)
