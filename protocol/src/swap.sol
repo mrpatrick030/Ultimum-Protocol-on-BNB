@@ -55,23 +55,23 @@ contract Swapper is Ownable {
         address _owner
     ) Ownable(_owner) {
     tokendata[0] = Tokens({
-            tokenpricefeed: AggregatorV3Interface(0x59F1ec1f10bD7eD9B938431086bC1D9e233ECf41),
+            tokenpricefeed: AggregatorV3Interface(0x6F9A3AC224025B0A9E7b7F47dcb1DF7872e2fA75),
             decimal: 18,
             tokenaddress: address(0),
             tokenName: "eth"
         });
         // DAI
     tokendata[1] = Tokens({
-            tokenpricefeed: AggregatorV3Interface(0xb84a700192A78103B2dA2530D99718A2a954cE86 ),
+            tokenpricefeed: AggregatorV3Interface(0xC603180D79a5Afa341A59134d126fC72Bcd19283 ),
             decimal: 18,
-            tokenaddress: 0x1D5cd5833f43C63F724eBb0F28C6AaeD79bF5BF2,
+            tokenaddress: 0x0DB2a8Aa2E2C023Cfb61c617d40162cc9F4c27aB,
             tokenName: "USDT"
         });
         // USDT
     tokendata[2] = Tokens({
-            tokenpricefeed: AggregatorV3Interface(0x9388954B816B2030B003c81A779316394b3f3f11),
+            tokenpricefeed: AggregatorV3Interface(0xC603180D79a5Afa341A59134d126fC72Bcd19283),
             decimal: 18,
-            tokenaddress: 0xE9C49311b81545cCed67aB3313C8f4f938ba1920,
+            tokenaddress: 0x91d9A24E285f2a59578a43E7b22701AC515D8885,
             tokenName: "dai"
         });
     }

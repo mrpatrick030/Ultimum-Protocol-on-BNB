@@ -32,8 +32,8 @@ contract StakERC20 is Ownable {
 
     constructor(address _owner, address _ult) Ownable(_owner) {
         stakableTokens.push(IERC20(_ult));
-        stakableTokens.push(IERC20(0x1D5cd5833f43C63F724eBb0F28C6AaeD79bF5BF2));  // mock usdt
-        stakableTokens.push(IERC20(0xE9C49311b81545cCed67aB3313C8f4f938ba1920)); // mock dai
+        stakableTokens.push(IERC20(0x91d9A24E285f2a59578a43E7b22701AC515D8885));  // mock usdt
+        stakableTokens.push(IERC20(0x0DB2a8Aa2E2C023Cfb61c617d40162cc9F4c27aB)); // mock dai
     
     }
 

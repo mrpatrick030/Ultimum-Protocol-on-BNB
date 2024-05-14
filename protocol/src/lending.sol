@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 import "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 import "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
@@ -46,6 +46,7 @@ contract P2PLending is Ownable {
 
     mapping(uint => Loan) public loans;
     mapping(address => uint) public defaulters;
+    mapping(address => bool) public outstanding;
     mapping(address=>bool) public accepteddCollaterals;
     address[] public accepted_collaterals;
     uint public loanCount;
@@ -95,7 +96,7 @@ contract P2PLending is Ownable {
         dao = _dao;
     }
     
-    function addCollateral(address _collateral) public onlyDao(msg.sender){
+    function addCollateral(address _collateral) public onlyOwner{
            _addCollateral(_collateral);
             emit CollateralAdded(_collateral);
     }
@@ -130,9 +131,10 @@ contract P2PLending is Ownable {
             "Interest rate must be between MIN_INTEREST_RATE and MAX_INTEREST_RATE"
         );
         require(_duration > 0, "Loan duration must be greater than 0");
-        uint _repaymentAmount = _amount + (_amount * _interest) / 100;
         uint loanId = loanCount++;
         Loan storage loan = loans[loanId];
+        require(outstanding[loan.borrower]==false, "settle outstanding loan");
+        uint _repaymentAmount = _amount + (_amount * _interest) / 100;
         loan.amount = _amount;
         loan.loan_id = loanId;
         loan.interest = _interest;
@@ -191,7 +193,8 @@ contract P2PLending is Ownable {
         }
         payable(address(this)).transfer(loan.amount);
         loan.lender = payable(msg.sender);
-        loan.active = false;
+        outstanding[loan.borrower] = true;
+        loan.active = true;
         emit LoanFunded(_loanId, msg.sender, msg.value);
     }
 
@@ -199,7 +202,6 @@ contract P2PLending is Ownable {
         uint _loanId
     ) external payable onlyActiveLoan(_loanId) onlyBorrower(_loanId) {
         Loan storage loan = loans[_loanId];
-
         require(!loan.repaid, "Loan has already been repaid");
 
         uint interestAmount = (loan.amount * loan.interest) / 100;
@@ -211,9 +213,6 @@ contract P2PLending is Ownable {
         // Transfer repayment amount minus service fee to the lender
         loan.lender.transfer(amountAfterFee);
         payable(treasuryAddress).transfer(serviceFee);
-        // Transfer service_charge to treasury.
-
-        // Transfer collateral back to the borrower
         if (loan.isCollateralErc20) {
             // If collateral is ERC20
             require(
@@ -241,6 +240,7 @@ contract P2PLending is Ownable {
 
         // Update loan status
         loan.repaid = true;
+        outstanding[loan.borrower] = false;
         loan.active = false;
     }
 
@@ -301,6 +301,7 @@ function getLoanInfo(uint _loanId) external view returns (Loan memory) {
 
         // Whitelist the borrower as a defaulter
         defaulters[loan.borrower] += 1 ;
+        outstanding[loan.borrower] = false;
 
         // Emit event
         emit CollateralClaimed(_loanId, msg.sender);

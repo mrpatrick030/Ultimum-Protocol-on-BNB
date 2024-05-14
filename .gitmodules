@@ -7,3 +7,6 @@
 [submodule "protocol/lib/chainlink-brownie-contracts"]
 	path = protocol/lib/chainlink-brownie-contracts
 	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "protocol/lib/redstone-oracles-monorepo"]
+	path = protocol/lib/redstone-oracles-monorepo
+	url = https://github.com/redstone-finance/redstone-oracles-monorepo
