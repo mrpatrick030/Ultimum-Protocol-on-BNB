@@ -191,7 +191,7 @@ contract P2PLending is Ownable {
             loan.active = false;
             revert("deadline passed");
         }
-        payable(address(this)).transfer(loan.amount);
+        payable(msg.sender).transfer(loan.amount);
         loan.lender = payable(msg.sender);
         outstanding[loan.borrower] = true;
         loan.active = true;
@@ -307,8 +307,11 @@ function getLoanInfo(uint _loanId) external view returns (Loan memory) {
         emit CollateralClaimed(_loanId, msg.sender);
     }
 
+
+// allows loan creator to withdraw his collaterals in case no one funds his loan
     function withdrawFunds(uint _loanId) external onlyBorrower(_loanId) {
         Loan storage loan = loans[_loanId];
+        require(loan.collateralAmount !=0, "no collateral found");
         if (block.timestamp > loan.fundingDeadline){
             loan.active = false;
              if (loan.isCollateralErc20) {
@@ -328,10 +331,10 @@ function getLoanInfo(uint _loanId) external view returns (Loan memory) {
                 loan.collateralAmount
             );
         }
-        }else{
-        payable(msg.sender).transfer(loan.amount);
         }
-       
+        loan.active = false;
+        loan.collateralAmount = 0;
+        loan.collateral = address(0);      
     }
 
     // function withdrawServiceCharges() external onlyOwner {

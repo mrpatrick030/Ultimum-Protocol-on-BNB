@@ -27,7 +27,7 @@ contract Deployscript is Script {
         erc20 = new Ultimum(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
         treasury = new Treasury(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(erc20));
         stakErc20 = new StakERC20(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(erc20));
-        lending = new P2PLending(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(treasury), address(erc20), 0x91d9A24E285f2a59578a43E7b22701AC515D8885, 0x0DB2a8Aa2E2C023Cfb61c617d40162cc9F4c27aB);
+        lending = new P2PLending(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(treasury), address(erc20), 0x0DB2a8Aa2E2C023Cfb61c617d40162cc9F4c27aB, 0xADD24771Bcb47b28d85cEfb641ef469bc9E52cf7);
         swap = new Swapper(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
         // Deploy DAO contract
         dao = new DAO(3, address(treasury), address(ultNft), address(erc20), address(stakErc20), address(swap), address(lending));

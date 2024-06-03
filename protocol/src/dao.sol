@@ -14,6 +14,7 @@ contract DAO {
         bool executed;
         bool status;
         address creator;
+        string creatorusername;
     }
     struct Member {
         address useraddr;
@@ -27,6 +28,7 @@ contract DAO {
     mapping(uint => Proposal) public proposals;
     mapping(address => Member) public members;
     mapping(address => uint) public withdrawal;
+    mapping(string => bool) private usernames;
     uint256 public proposalCount;
     uint256 public memberCount;
     uint public quorum;
@@ -65,18 +67,17 @@ contract DAO {
         require(members[msg.sender].status, "Unauthorized access");
         _;
     }
+modifier validateAction(uint _proposalId) {
+    require(proposals[_proposalId].status, "Proposal is not active");
+    require(!proposals[_proposalId].executed, "Proposal already executed");
+    require(proposals[_proposalId].forVotes + proposals[_proposalId].againstVotes > 0, "No votes cast");
+    require(
+        proposals[_proposalId].forVotes * 100 / (proposals[_proposalId].forVotes + proposals[_proposalId].againstVotes) > 60,
+        "Proposal did not receive more than 60% of the votes"
+    );
+    _;
+}
 
-    modifier validateAction(uint _proposalId) {
-        require(proposals[_proposalId].status, "Proposal is not active");
-        require(!proposals[_proposalId].executed, "Proposal already executed");
-        require(proposals[_proposalId].forVotes > 1, "dubious vote");
-        require(
-            proposals[_proposalId].forVotes >
-                proposals[_proposalId].againstVotes,
-            "Proposal not approved"
-        );
-        _;
-    }
     modifier proposal_time_check(uint _proposalId, uint _maxDuration) {
         require(
             block.timestamp <=
@@ -111,11 +112,16 @@ contract DAO {
         _;
     }
 
+   function usernameExists(string memory _username) public view returns (bool) {
+        return usernames[_username];
+    }
     function addMember(
         address _member,
         string memory _username
     ) external hasMinimumUltBalance(_member) {
         require(memberCount < 100, "max members reached");
+        require(!usernameExists(_username), "Username already exists");
+
         members[_member] = Member(
             _member,
             _username,
@@ -124,6 +130,7 @@ contract DAO {
             block.timestamp,
             0
         );
+        usernames[_username] = true;
         memberCount++;
     }
 
@@ -148,7 +155,8 @@ contract DAO {
             block.timestamp,
             false,
             true,
-            msg.sender
+            msg.sender,
+            members[msg.sender]._username
         );
         members[msg.sender].lastactivetime = block.timestamp;
         members[msg.sender].daoPoints += 10;
