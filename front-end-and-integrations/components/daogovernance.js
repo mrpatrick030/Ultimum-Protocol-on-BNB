@@ -369,7 +369,7 @@ export default function DAOgovernance () {
             (<div className="overflow-auto">
             {searchedProposals.map((proposal) => (
           <div key={(proposal.id).toString()} className="p-[0.5cm] bg-[#111] rounded-xl mb-[0.5cm]">
-          <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {(proposal.creator).substring(0, 5)}...{(proposal.creator).substring(37, 42)}</div>
+          <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {proposal.creatorusername}</div>
           <div className="clear-both mt-[0.2cm] text-[#00f] text-[80%]">
             <span>{(new Date((proposal.time_created).toString() * 1000)).toLocaleString()}</span> 
             {proposal.status == true && (<span className="text-[#0f0] ml-[0.2cm]">Ongoing</span>)}
@@ -397,7 +397,7 @@ export default function DAOgovernance () {
         (<div className="overflow-auto">
         {currentProposals.map((proposal) => (
       <div key={(proposal.id).toString()} className="p-[0.5cm] bg-[#111] rounded-xl mb-[0.5cm]">
-      <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {(proposal.creator).substring(0, 5)}...{(proposal.creator).substring(37, 42)}</div>
+      <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {proposal.creatorusername}</div>
       <div className="clear-both mt-[0.2cm] text-[#00f] text-[80%]">
         <span>{(new Date((proposal.time_created).toString() * 1000)).toLocaleString()}</span> 
         {proposal.status == true && (<span className="text-[#0f0] ml-[0.2cm]">Ongoing</span>)}
@@ -448,7 +448,7 @@ export default function DAOgovernance () {
           (<div>
         {theuserProposals.map((proposal) => (
       <div key={(proposal.id).toString()} className="p-[0.5cm] bg-[#002] rounded-xl mb-[0.5cm]">
-      <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {(proposal.creator).toString() === address.toString() ? (<span>you</span>) : (<span></span>)}</div>
+      <div className="bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposalid m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>ID: {(proposal.id).toString()}</div><div className="lg:float-right bg-[#502] rounded-md px-[0.3cm] py-[0.1cm] text-[80%] proposer m-[0.1cm]" style={{border:"2px solid #333", display:"inline-block"}}>Proposer: {proposal.creator === address && <span>you</span>}</div>
       <div className="clear-both mt-[0.2cm] text-[#00f] text-[80%]">
         <span>{(new Date((proposal.time_created).toString() * 1000)).toLocaleString()}</span> 
         {proposal.status == true && (<span className="text-[#0f0] ml-[0.2cm]">Ongoing</span>)}
