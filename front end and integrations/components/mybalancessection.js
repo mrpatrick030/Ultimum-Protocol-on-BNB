@@ -127,7 +127,7 @@ import {
                 Firstly, a loan has to be created by the borrower, then another user (the lender) funds the loan by lending to the borrower. The loan has the 
                 following characteristics: loan amount, interest, expiry date, and collateral. Collateral provided by the borrower is locked up by the system until the given loan duration expires.
                  The collateral is sent out to the lender if the borrower fails to repay the loan during the specified time. For a seamless user experience, 
-                 a "view all available loans" section with search functionality and pagination and decentralised chat system has been integrated into 
+                 a "view all available loans" and "view my loans" section with search functionality and pagination and decentralised chat system have been integrated into 
                   the dApp. Participate in Ultimum DAO governance to determine the next supported token/collateral. 
                 </div>
                 <button onClick={(e) => setDisplayComponent("lend") & changeBg6(e)} className="text-center px-[0.4cm] py-[0.2cm] lg:float-left bg-[#502] lg:w-[49%] w-[100%] mt-[0.3cm] generalbutton text-[#fff] rounded-md">Lend Now</button>
