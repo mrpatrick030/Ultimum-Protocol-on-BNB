@@ -92,7 +92,7 @@ In future upgrades of this project, more dApp features/services and oracles will
 ✅ [Treasury](https://testnet.bscscan.com/address/0x5816ab7fffd3f5c4d1897539240873b29c0f3aec) 🟢
 - Address: `0x5816ab7fffd3f5c4d1897539240873b29c0f3aec`
 
-## StakeERC20 (Time-frame) Contract
+## StakeBEP20 (Time-frame) Contract
 
 ✅ [StakERC20](https://testnet.bscscan.com/address/0x1bfb9a434667ddfe57d6d67d556f5917e6958764) 🟢
 - Address: `0x1bfb9a434667ddfe57d6d67d556f5917e6958764`
