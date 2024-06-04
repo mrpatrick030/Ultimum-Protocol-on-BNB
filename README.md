@@ -94,7 +94,7 @@ In future upgrades of this project, more dApp features/services and oracles will
 
 ## StakeBEP20 (Time-frame) Contract
 
-✅ [StakBEP20](https://testnet.bscscan.com/address/0x1bfb9a434667ddfe57d6d67d556f5917e6958764) 🟢
+✅ [StakeBEP20](https://testnet.bscscan.com/address/0x1bfb9a434667ddfe57d6d67d556f5917e6958764) 🟢
 - Address: `0x1bfb9a434667ddfe57d6d67d556f5917e6958764`
 
 ## Swap Contract
