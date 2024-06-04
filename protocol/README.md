@@ -6,7 +6,7 @@
 | UltNft        | [0xb5b81a928a20070e5e9e888615f018affebfe8de](https://testnet.bscscan.com/address/0xb5b81a928a20070e5e9e888615f018affebfe8de) | Verified            |
 | Ultimum       | [0xe4d3a364b49f885a95692b2e3d3c95bc15dad4d0](https://testnet.bscscan.com/address/0xe4d3a364b49f885a95692b2e3d3c95bc15dad4d0) | Verified            |
 | Treasury      | [0x5816ab7fffd3f5c4d1897539240873b29c0f3aec](https://testnet.bscscan.com/address/0x5816ab7fffd3f5c4d1897539240873b29c0f3aec) | Verified            |
-| StakERC20     | [0x1bfb9a434667ddfe57d6d67d556f5917e6958764](https://testnet.bscscan.com/address/0x1bfb9a434667ddfe57d6d67d556f5917e6958764) | Verified            |
+| StakeBEP20     | [0x1bfb9a434667ddfe57d6d67d556f5917e6958764](https://testnet.bscscan.com/address/0x1bfb9a434667ddfe57d6d67d556f5917e6958764) | Verified            |
 | P2PLending    | [0x1d5cd5833f43c63f724ebb0f28c6aaed79bf5bf2](https://testnet.bscscan.com/address/0x1d5cd5833f43c63f724ebb0f28c6aaed79bf5bf2) | Verified            |
 | Swapper       | [0xe9c49311b81545cced67ab3313c8f4f938ba1920](https://testnet.bscscan.com/address/0xe9c49311b81545cced67ab3313c8f4f938ba1920) | Verified            |
 | DAO           | [0x5de93b7d36e1bdeca9438a4b3c0e64e5fb637e76](https://testnet.bscscan.com/address/0x5de93b7d36e1bdeca9438a4b3c0e64e5fb637e76) | Verified            |
