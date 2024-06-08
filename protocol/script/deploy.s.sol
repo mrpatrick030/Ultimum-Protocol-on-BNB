@@ -23,14 +23,14 @@ contract Deployscript is Script {
     function run() public {
         uint256 key = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(key);
-        ultNft = new UltNft(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
-        erc20 = new Ultimum(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
-        treasury = new Treasury(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(erc20));
-        stakErc20 = new StakERC20(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(erc20));
-        lending = new P2PLending(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(treasury), address(erc20), 0x0DB2a8Aa2E2C023Cfb61c617d40162cc9F4c27aB, 0xADD24771Bcb47b28d85cEfb641ef469bc9E52cf7);
-        swap = new Swapper(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
+        // ultNft = new UltNft(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
+        // erc20 = new Ultimum(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
+        // treasury = new Treasury(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(erc20));
+        // stakErc20 = new StakERC20(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, address(erc20));
+        lending = new P2PLending(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054, 0x1D5cd5833f43C63F724eBb0F28C6AaeD79bF5BF2, 0x1D5cd5833f43C63F724eBb0F28C6AaeD79bF5BF2, 0xADD24771Bcb47b28d85cEfb641ef469bc9E52cf7, 0x5816aB7FFfD3f5C4D1897539240873B29c0F3aec);
+        // swap = new Swapper(0xE6e2595f5f910c8A6c4cf42267Ca350c6BA8c054);
         // Deploy DAO contract
-        dao = new DAO(3, address(treasury), address(ultNft), address(erc20), address(stakErc20), address(swap), address(lending));
+        // dao = new DAO(3, address(treasury), address(ultNft), address(erc20), address(stakErc20), address(swap), address(lending));
         
     }
 

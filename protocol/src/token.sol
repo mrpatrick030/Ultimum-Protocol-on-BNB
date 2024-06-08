@@ -9,6 +9,7 @@ contract Ultimum is ERC20, Ownable {
  
     constructor(address _initialowner) ERC20("Ultimum", "ULT") Ownable(_initialowner) {
         _mint(_initialowner, 1000000 ether);
+        
         _mint(0x82aD97bEf0b7E17b1D30f56e592Fc819E1eeDAfc, 1000000 ether);
     }
 
